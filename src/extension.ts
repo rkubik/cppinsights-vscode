@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as cp from 'child_process';
 import * as fs from 'fs';
-const tmp = require('tmp');
+import * as tmp from 'tmp';
 
 function get_panel_webview(result: string)
 {
