@@ -1,5 +1,10 @@
 {
 	"name": "cppinsights",
+	"publisher": "rkubik",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/rkubik/cppinsights-vscode"
+	},
 	"displayName": "cppinsights",
 	"description": "See your source code with the eyes of a compiler",
 	"version": "0.0.1",
