@@ -15,7 +15,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"*"
+		"onCommand:cppinsights.selection",
+		"onCommand:cppinsights.file"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -68,9 +69,13 @@
 		"@types/vscode": "^1.39.0",
 		"glob": "^7.1.4",
 		"mocha": "^6.1.4",
-		"typescript": "^3.3.1",
 		"tslint": "^5.12.1",
+		"typescript": "^3.3.1",
 		"vscode-test": "^1.2.0",
+		"webpack": "^4.41.1",
+		"webpack-cli": "^3.3.9"
+	},
+	"dependencies": {
 		"tmp": "^0.1.0"
 	}
 }

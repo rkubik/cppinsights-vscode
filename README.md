@@ -21,9 +21,9 @@ code --install-extension cppinsights-0.0.1.vsix
 
 ### Commands
 
-`cppinsights selection`: Run insights on the current selection
+`cppinsights: selection`: Run insights on the current selection
 
-`cppinsights file`: Run insights on the current file
+`cppinsights: file`: Run insights on the current file
 
 ### Keybindings
 
