@@ -76,6 +76,7 @@
 		"webpack-cli": "^3.3.9"
 	},
 	"dependencies": {
-		"@types/tmp": "^0.1.0"
+		"@types/tmp": "^0.1.0",
+		"tmp": "^0.1.0"
 	}
 }
