@@ -1,5 +1,7 @@
 # cppinsights vscode extension
 
+![cppinsights](/screenshots/cppinsights-file.png?raw=true "cppinsights")
+
 ## Getting Started
 
 1. Compile [insights](https://github.com/andreasfertig/cppinsights).
