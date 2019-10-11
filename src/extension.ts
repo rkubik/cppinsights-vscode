@@ -1,10 +1,32 @@
 import * as vscode from 'vscode';
-const cp = require('child_process');
+import * as cp from 'child_process';
+import * as fs from 'fs';
 const tmp = require('tmp');
-const fs = require('fs');
 
-function display_cppinsights(code: string) {
+function get_panel_webview(result: string)
+{
+	return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Security-Policy" content="default-src 'none';">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>cppinsights</title>
+</head>
+<body>
+	<pre>${result}</pre>
+</body>
+</html>`;
+}
+
+function display_cppinsights(type: string, code: string) {
 	if (code.length == 0) {
+		return;
+	}
+	const insightsPath = vscode.workspace.getConfiguration('cppinsights').get('insightsPath');
+	if (!insightsPath) {
+		vscode.window.showWarningMessage('cppinsights: Missing value for insightsPath');
 		return;
 	}
 	tmp.file({prefix: 'cppinsights-', postfix: '.cpp', keep: false}, function (err: string, path: string) {
@@ -13,15 +35,15 @@ function display_cppinsights(code: string) {
 			return;
 		}
 		fs.writeFileSync(path, code);
-		var child = cp.spawn(vscode.workspace.getConfiguration().get('cppinsights.insightsPath'), [path]);
+		var child = cp.spawn(insightsPath + '', [path]);
 		child.stdout.on('data', function (data: string) {
 			const panel = vscode.window.createWebviewPanel(
 				'cppinsights',
-				'cppinsights',
+				'cppinsights: ' + type,
 				vscode.ViewColumn.Beside,
 				{}
 			);
-			panel.webview.html = '<pre>' + data + '</pre>';
+			panel.webview.html = get_panel_webview(data);
 		});
 		child.on('error', (err: string) => {
 			vscode.window.showErrorMessage('cppinsights: failed to compile');
@@ -31,22 +53,19 @@ function display_cppinsights(code: string) {
 }
 
 export function activate(context: vscode.ExtensionContext) {
-	let disposable1 = vscode.commands.registerCommand('cppinsights.selection', () => {
+	context.subscriptions.push(vscode.commands.registerCommand('cppinsights.selection', () => {
 		const editor = vscode.window.activeTextEditor;
 		if (editor !== undefined) {
-			display_cppinsights(editor.document.getText(editor.selection));
+			display_cppinsights('selection', editor.document.getText(editor.selection));
 		}
-	});
+	}));
 
-	let disposable2 = vscode.commands.registerCommand('cppinsights.file', () => {
+	context.subscriptions.push(vscode.commands.registerCommand('cppinsights.file', () => {
 		const editor = vscode.window.activeTextEditor;
 		if (editor !== undefined) {
-			display_cppinsights(editor.document.getText());
+			display_cppinsights('file', editor.document.getText());
 		}
-	});
-
-	context.subscriptions.push(disposable1);
-	context.subscriptions.push(disposable2);
+	}));
 }
 
 export function deactivate() {

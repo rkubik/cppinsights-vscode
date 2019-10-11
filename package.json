@@ -15,8 +15,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:cppinsights.selection",
-		"onCommand:cppinsights.file"
+		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -27,8 +26,7 @@
 					"cppinsights.insightsPath": {
 						"type": "string",
 						"default": "",
-						"description": "Absolute path to insights binary",
-						"scope": "resource"
+						"description": "Absolute path to insights binary"
 					}
 				}
 			}
@@ -36,11 +34,11 @@
 		"commands": [
 			{
 				"command": "cppinsights.selection",
-				"title": "cppinsights selection"
+				"title": "cppinsights: selection"
 			},
 			{
 				"command": "cppinsights.file",
-				"title": "cppinsights file"
+				"title": "cppinsights: file"
 			}
 		],
 		"keybindings": [

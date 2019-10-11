@@ -6,6 +6,11 @@
 
 1. Compile [insights](https://github.com/andreasfertig/cppinsights).
 2. Install this extension in vscode.
+
+```
+code --install-extension cppinsights-0.0.1.vsix
+```
+
 3. Configure the `insights` path.
 
 ```
