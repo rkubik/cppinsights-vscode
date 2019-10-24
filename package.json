@@ -15,6 +15,7 @@
 		"Other"
 	],
 	"activationEvents": [
+		"onCommand:cppinsights.line",
 		"onCommand:cppinsights.selection",
 		"onCommand:cppinsights.file"
 	],
@@ -30,9 +31,33 @@
 						"description": "Absolute path to insights binary"
 					}
 				}
+			},
+			{
+				"title": "cppinsights",
+				"properties": {
+					"cppinsights.languageStandardVersion": {
+						"type": "string",
+						"default": "",
+						"description": "Specify language standard version (Ex: c++17)"
+					}
+				}
+			},
+			{
+				"title": "cppinsights",
+				"properties": {
+					"cppinsights.additionalArguments": {
+						"type": "array",
+						"default": [],
+						"description": "Additional arguments"
+					}
+				}
 			}
 		],
 		"commands": [
+			{
+				"command": "cppinsights.line",
+				"title": "cppinsights: line"
+			},
 			{
 				"command": "cppinsights.selection",
 				"title": "cppinsights: selection"
@@ -40,18 +65,6 @@
 			{
 				"command": "cppinsights.file",
 				"title": "cppinsights: file"
-			}
-		],
-		"keybindings": [
-			{
-				"command": "cppinsights.selection",
-				"key": "ctrl+shift+l",
-				"when": "editorTextFocus"
-			},
-			{
-				"command": "cppinsights.file",
-				"key": "ctrl+shift+j",
-				"when": "editorTextFocus"
 			}
 		]
 	},
@@ -77,6 +90,8 @@
 	},
 	"dependencies": {
 		"@types/tmp": "^0.1.0",
+		"he": "^1.2.0",
+		"html-entities": "^1.2.1",
 		"tmp": "^0.1.0"
 	}
 }

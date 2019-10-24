@@ -11,22 +11,23 @@
 code --install-extension cppinsights-0.0.1.vsix
 ```
 
-3. Configure the `insights` path.
+3. Configure `insights`.
 
 ```
-"cppinsights.insightsPath": "/path/to/insights"
+"cppinsights.insightsPath": "/path/to/insights",
+"cppinsights.languageStandardVersion": "c++17",
+"cppinsights.additionalArguments":[
+    "-isystem/usr/include",
+    "-isystem/usr/include/x86_64-linux-gnu"
+],
 ```
 
 ## How to use
 
 ### Commands
 
+`cppinsights: line`: Run insights on the current line
+
 `cppinsights: selection`: Run insights on the current selection
 
 `cppinsights: file`: Run insights on the current file
-
-### Keybindings
-
-`ctrl+shift+l`: selection command
-
-`ctrl+shift+j`: file command
