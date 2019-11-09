@@ -2,7 +2,6 @@ import * as vscode from 'vscode';
 import * as cp from 'child_process';
 import * as fs from 'fs';
 import * as tmp from 'tmp';
-var he = require('he');
 
 function escapeHTML(html: string) {
     return html
